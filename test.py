@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # VARIABLES AND SHIT
-TOKEN = "MTQ5OTUzMjI5MDk2MTgzODE3MA.GDL-F8.BXe_SiuuqtmGRm7biR5HO9d_M8SvyR_GfA4JpI"
+TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("CHANNEL_ID", "1499530895311241307"))
 ROBLOX_USERNAME = "iIovemycars"
 CHECK_SECONDS = int(os.getenv("CHECK_SECONDS", 60))
