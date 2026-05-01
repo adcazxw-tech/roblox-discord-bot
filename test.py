@@ -86,21 +86,21 @@ async def check_roblox_status():
     # ONLINE
     if status == 1 and was_online == 0:
         try:
-            await channel.send(f"🟢 @everyone **{ROBLOX_USERNAME} is online!**")
+            await channel.send(f"🔵 @everyone **{ROBLOX_USERNAME} is online!**")
         except Exception as e:
             print("Error:", e)
 
     # JOINED A GAME
     elif status == 2 and was_online != 2:
         try:
-            await channel.send(f"🎮 @everyone **{ROBLOX_USERNAME} joined a game!**")
+            await channel.send(f"🟢 @everyone **{ROBLOX_USERNAME} joined a game!**")
         except Exception as e:
             print("Error:", e)
 
     # LEFT A GAME
     elif status == 1 and was_online == 2:
         try:
-            await channel.send(f"↩️ @everyone **{ROBLOX_USERNAME} left the game.**")
+            await channel.send(f"🟠 @everyone **{ROBLOX_USERNAME} left the game.**")
         except Exception as e:
             print("Error:", e)
     
