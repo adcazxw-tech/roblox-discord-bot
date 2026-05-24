@@ -19,21 +19,30 @@ was_online = 0
 roblox_user_id = None
 
 # ROBLOX API SHIT
-async def get_roblox_user_id(username):
-    url = "https://users.roblox.com/v1/usernames/users"
+async def get_presence(user_id):
+    url = "https://presence.roblox.com/v1/presence/users"
 
-    async with aiohttp.ClientSession() as session:
-        async with session.post(url, json={
-            "usernames": [username],
-            "excludeBannedUsers": True
-        }) as response:
-            data = await response.json()
-            print(data)
+    try:
+        timeout = aiohttp.ClientTimeout(total=10)
 
-    if not data["data"]:
-        raise ValueError("Roblox user not found")
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(
+                url,
+                json={"userIds": [user_id]}
+            ) as response:
 
-    return data["data"][0]["id"]
+                data = await response.json()
+
+        # Roblox API failed
+        if "userPresences" not in data:
+            print("Bad Roblox API response:", data)
+            return 0
+
+        return data["userPresences"][0]["userPresenceType"]
+
+    except Exception as e:
+        print("Presence Error:", e)
+        return 0
 
 # MORE API SHIT
 async def get_presence(user_id):
