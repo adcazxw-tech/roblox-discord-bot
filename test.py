@@ -13,7 +13,6 @@ ROBLOX_USERNAME = "iIovemycars"
 CHECK_SECONDS = int(os.getenv("CHECK_SECONDS", 60))
 
 intents = discord.Intents.default()
-intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 num = 0
 was_online = 0
